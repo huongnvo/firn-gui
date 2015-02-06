@@ -1,0 +1,214 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module firnAirModel</title>
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>firnAirModel</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/Users/huongnvo/Documents/Glaciology/gui/src/firnAirModel.py">/Users/huongnvo/Documents/Glaciology/gui/src/firnAirModel.py</a></font></td></tr></table>
+    <p><tt><a href="#firnAirModel">firnAirModel</a></tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="firnAirModel.html#firnAirModel">firnAirModel</a>
+</font></dt></dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="firnAirModel">class <strong>firnAirModel</strong></a></font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="firnAirModel-A"><strong>A</strong></a>(self, P)</dt><dd><tt>Power-law&nbsp;scheme&nbsp;(from&nbsp;Pakantar,&nbsp;eq.&nbsp;5.34)<br>
+&nbsp;<br>
+Arguments:<br>
+P&nbsp;--&nbsp;<br>
+&nbsp;<br>
+Returns:<br>
+A&nbsp;--</tt></dd></dl>
+
+<dl><dt><a name="firnAirModel-F_upwind"><strong>F_upwind</strong></a>(self, F)</dt><dd><tt>Upwinding&nbsp;scheme<br>
+&nbsp;<br>
+Arguments:<br>
+F&nbsp;--<br>
+&nbsp;<br>
+Returns:<br>
+F_upwind&nbsp;--</tt></dd></dl>
+
+<dl><dt><a name="firnAirModel-FirnAir_SS"><strong>FirnAir_SS</strong></a>(self, gaschoice)</dt><dd><tt>Steady&nbsp;state&nbsp;analysis<br>
+&nbsp;<br>
+Arguments:&nbsp;<br>
+gaschoice<br>
+&nbsp;<br>
+Returns:<br>
+phi&nbsp;--<br>
+a_P_out&nbsp;--<br>
+bubble_pres&nbsp;--<br>
+z_nodes&nbsp;--</tt></dd></dl>
+
+<dl><dt><a name="firnAirModel-FirnAir_TR"><strong>FirnAir_TR</strong></a>(self, gaschoice, jj)</dt><dd><tt>Transient&nbsp;analysis<br>
+&nbsp;<br>
+Arguments:<br>
+gaschoice&nbsp;--<br>
+jj&nbsp;--<br>
+&nbsp;<br>
+Returns:<br>
+phi&nbsp;--<br>
+diffu_hold&nbsp;--&nbsp;<br>
+rho_hold&nbsp;--&nbsp;<br>
+z_nodes&nbsp;--</tt></dd></dl>
+
+<dl><dt><a name="firnAirModel-__init__"><strong>__init__</strong></a>(self, cc, dataDir, dataSave)</dt><dd><tt>main&nbsp;module</tt></dd></dl>
+
+<dl><dt><a name="firnAirModel-boundaries"><strong>boundaries</strong></a>(self, gas_org)</dt><dd><tt>Arguments:<br>
+gas_org&nbsp;--<br>
+&nbsp;<br>
+Returns:<br>
+bc_u&nbsp;--<br>
+bc_d&nbsp;--<br>
+bc_u_0&nbsp;--</tt></dd></dl>
+
+<dl><dt><a name="firnAirModel-calculate"><strong>calculate</strong></a>(self, diffu, por_op, d_eddy, z_edges, z_nodes, mode, dz, deltaM, T, omega, Tprof, phi_t, rho_prof, Accu_0, p_a, por_tot, por_cl, dt)</dt><dd><tt>Arguments:<br>
+&nbsp;<br>
+diffu&nbsp;--&nbsp;<br>
+por_op&nbsp;--<br>
+d_eddy&nbsp;--<br>
+z_edges&nbsp;--<br>
+z_nodes&nbsp;--<br>
+mode&nbsp;--<br>
+dz&nbsp;--<br>
+deltaM&nbsp;--<br>
+T&nbsp;--<br>
+omega&nbsp;--<br>
+Tprof&nbsp;--<br>
+phi_t&nbsp;--<br>
+rho_prof&nbsp;--<br>
+Accu_0&nbsp;--<br>
+p_a&nbsp;--<br>
+por_tot&nbsp;--<br>
+por_cl&nbsp;--<br>
+dt&nbsp;--<br>
+&nbsp;<br>
+Returns:<br>
+a_P&nbsp;--<br>
+a_U&nbsp;--<br>
+a_D&nbsp;--<br>
+a_P_0&nbsp;--<br>
+b_0&nbsp;--<br>
+dZ_d&nbsp;--<br>
+S_P&nbsp;--<br>
+dZ&nbsp;--<br>
+S_C_0&nbsp;--<br>
+w_edges&nbsp;--<br>
+bubble_pres&nbsp;--</tt></dd></dl>
+
+<dl><dt><a name="firnAirModel-diffusivity"><strong>diffusivity</strong></a>(self, rho_co, por_co, por_tot, por_cl, por_op, z_co, czd, LIZ, d_0, D_x, T, p_a, z_nodes, rhoHL)</dt><dd><tt>Arguments:<br>
+rho_co&nbsp;--<br>
+por_co&nbsp;--<br>
+por_tot&nbsp;--<br>
+por_cl&nbsp;--<br>
+por_op&nbsp;--<br>
+z_co&nbsp;--<br>
+czd&nbsp;--<br>
+LIZ&nbsp;--<br>
+d_0&nbsp;--<br>
+D_x&nbsp;--<br>
+T&nbsp;--<br>
+p_a&nbsp;--<br>
+z_nodes&nbsp;--<br>
+rhoHL&nbsp;--<br>
+&nbsp;<br>
+Returns:<br>
+diffu&nbsp;--<br>
+d_eddy&nbsp;--&nbsp;<br>
+diffu_full_fre&nbsp;--&nbsp;<br>
+diffu_full_sch&nbsp;--&nbsp;<br>
+diffu_full_sev&nbsp;--&nbsp;<br>
+diffu_full_data&nbsp;--</tt></dd></dl>
+
+<dl><dt><a name="firnAirModel-firnair"><strong>firnair</strong></a>(self)</dt><dd><tt>Returns:<br>
+d&nbsp;--</tt></dd></dl>
+
+<dl><dt><a name="firnAirModel-porosity"><strong>porosity</strong></a>(self, rho_prof, T)</dt><dd><tt>Arguments:<br>
+rho_prof&nbsp;--<br>
+T&nbsp;--<br>
+&nbsp;<br>
+Returns:<br>
+rho_co&nbsp;--<br>
+por_co&nbsp;--<br>
+por_tot&nbsp;--<br>
+por_cl&nbsp;--<br>
+por_op&nbsp;--<br>
+bcoRho&nbsp;--<br>
+LIDRho&nbsp;--</tt></dd></dl>
+
+<dl><dt><a name="firnAirModel-solver"><strong>solver</strong></a>(self, a_U, a_D, a_P, b)</dt><dd><tt>Routine&nbsp;to&nbsp;solve&nbsp;Ax&nbsp;=&nbsp;B<br>
+&nbsp;<br>
+Arguments:<br>
+a_U&nbsp;--<br>
+a_D&nbsp;--<br>
+a_P&nbsp;--<br>
+b&nbsp;--&nbsp;<br>
+&nbsp;<br>
+Returns:<br>
+phi_t&nbsp;--</tt></dd></dl>
+
+<dl><dt><a name="firnAirModel-space"><strong>space</strong></a>(self, depth, z_res)</dt><dd><tt>Arguments:<br>
+depth&nbsp;--<br>
+z_res&nbsp;--<br>
+&nbsp;<br>
+Returns:<br>
+dz&nbsp;--<br>
+z_edges&nbsp;--<br>
+z_nodes&nbsp;--<br>
+nodes&nbsp;--<br>
+nz_P&nbsp;--<br>
+nz_fv&nbsp;--</tt></dd></dl>
+
+<dl><dt><a name="firnAirModel-time"><strong>time</strong></a>(self, time_yr, stpsperyear)</dt><dd><tt>Arguments:&nbsp;<br>
+time_yr&nbsp;--<br>
+stpsperyear&nbsp;--<br>
+&nbsp;<br>
+Returns:<br>
+nt&nbsp;--<br>
+model_time&nbsp;--<br>
+model_time_years&nbsp;--<br>
+dt&nbsp;--</tt></dd></dl>
+
+<dl><dt><a name="firnAirModel-w"><strong>w</strong></a>(self, z_edges, Accu, rho_interface, por_op, T, p_a, por_tot, por_cl, z_nodes, dz)</dt><dd><tt>Function&nbsp;for&nbsp;downward&nbsp;advection&nbsp;of&nbsp;air&nbsp;and&nbsp;total&nbsp;air&nbsp;content<br>
+&nbsp;<br>
+Arguments:<br>
+z_edges&nbsp;--&nbsp;<br>
+Accu&nbsp;--&nbsp;<br>
+rho_interface&nbsp;--&nbsp;<br>
+por_op&nbsp;--&nbsp;<br>
+T&nbsp;--&nbsp;<br>
+p_a&nbsp;--&nbsp;<br>
+por_tot&nbsp;--&nbsp;<br>
+por_cl&nbsp;--&nbsp;<br>
+z_nodes&nbsp;--&nbsp;<br>
+dz&nbsp;--&nbsp;<br>
+&nbsp;<br>
+Returns:<br>
+w_ad&nbsp;--<br>
+bubble_pres&nbsp;--</tt></dd></dl>
+
+<dl><dt><a name="firnAirModel-writeToFile"><strong>writeToFile</strong></a>(self, file, option, x, y)</dt><dd><tt>Write&nbsp;results&nbsp;to&nbsp;.csv&nbsp;files<br>
+&nbsp;<br>
+Arguments:<br>
+file&nbsp;--&nbsp;file&nbsp;name&nbsp;that&nbsp;the&nbsp;user&nbsp;wishes&nbsp;to&nbsp;save&nbsp;to<br>
+option&nbsp;--&nbsp;'w'&nbsp;or&nbsp;'a'<br>
+x&nbsp;--&nbsp;first&nbsp;column&nbsp;(time)<br>
+y&nbsp;--&nbsp;second&nbsp;column&nbsp;(data)</tt></dd></dl>
+
+</td></tr></table></td></tr></table>
+</body></html>

@@ -1,8 +1,8 @@
 '''
 Created on Dec 10, 2014
-
-@author: huongnvo
+Sub-window for the firn air model
 '''
+
 import Tkinter
 import tkFileDialog
 from Tkinter import Menu
@@ -13,7 +13,6 @@ import configJson
 import firnAirModel
 
 class airModel(Tkinter.Tk):
-
     def __init__(self, parent):
         Tkinter.Tk.__init__(self, parent)
         self.grid()
@@ -25,6 +24,9 @@ class airModel(Tkinter.Tk):
         self.saveRan = False
         
     def initialize(self):
+        ''' 
+        Initialize all buttons and states
+        '''
         menubar = Menu(self)
         self.config(menu = menubar)
         filemenu = Menu(menubar, tearoff = 0)
@@ -63,6 +65,9 @@ class airModel(Tkinter.Tk):
         clearButton.grid(row = 36, column = 2, pady = 5)
     
     def configJson(self):
+        ''' 
+        Creates a sub-window to configure a .json file
+        '''
         config = configJson.configJson(None, self.cc)
         config.title("Configure your .json file")
         if (config.didRun()):
@@ -75,6 +80,9 @@ class airModel(Tkinter.Tk):
         self.checkState()
         
     def openConfig(self):
+        '''
+        Load and parse a .json file to the model and print content to main window as well as the model
+        '''
         file_opt = options = {} 
         options['filetypes'] = [('all files', '.*'), ('text files', '.txt'), ('json files', '.json')]
         options['title'] = 'Choose a config file'
@@ -93,6 +101,9 @@ class airModel(Tkinter.Tk):
         self.checkState()
         
     def openData(self):
+        ''' 
+        Load and parse a data directory to the model and print content to main window 
+        '''
         self.dataDir = tkFileDialog.askdirectory()
         if self.dataDir is "":
             return
@@ -107,6 +118,9 @@ class airModel(Tkinter.Tk):
         self.checkState()
         
     def selectDir(self):
+        '''
+        Allows the user to choose a save directory and print path to main window
+        '''
         self.resultDir = tkFileDialog.askdirectory()
         if self.resultDir is "":
             self.write("You did not choose a directory")
@@ -128,8 +142,9 @@ class airModel(Tkinter.Tk):
         print "display"
         
     def run(self):
-        print(str(self.dataDir))
-        print(str(self.resultDir))
+        ''' 
+        Runs the firn air model -- only when a .json file, a data directory and a results directory has been loaded
+        '''
         firnAir = firnAirModel.firnAirModel(self.cc, self.dataDir, self.resultDir)
     
     def saveData(self):
@@ -139,6 +154,10 @@ class airModel(Tkinter.Tk):
         print "print manual"
         
     def checkState(self):
+        ''' 
+        Checks to see if a .json file, a data directory and a results directory has been loaded
+        Run button will be enabled when all files and pahts have been loaded to the model
+        '''
         if self.dataRan and self.saveRan and self.configRan:
             self.runButton['state'] = 'normal'
             self.loadButton['state'] = 'normal'
