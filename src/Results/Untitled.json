@@ -1,0 +1,17 @@
+{
+    "userdata": false, 
+    "sitechoice": "87", 
+    "z_res": 87.0, 
+    "thermal": "87", 
+    "ad_method": "87", 
+    "rho0": 787.0, 
+    "gravity": "87", 
+    "pressure": 87.0, 
+    "depth": 87.0, 
+    "gaschoice": "878", 
+    "steps": 87.0, 
+    "runtype": "7", 
+    "tgrad": 87.0, 
+    "conzone": 878.0, 
+    "diffu": "87"
+}

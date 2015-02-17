@@ -11,6 +11,7 @@ import os
 import json
 import configJson
 import firnAirModel
+import ttk 
 
 class airModel(Tkinter.Tk):
     def __init__(self, parent):
@@ -63,18 +64,30 @@ class airModel(Tkinter.Tk):
         self.text.grid(row = 0, column = 2, rowspan = 35, pady = 5, padx = 10)
         self.result.grid(row = 5, column = 0, columnspan = 2, rowspan = 5, pady = 5, padx = 5)
         clearButton.grid(row = 36, column = 2, pady = 5)
+        
+#         progressbar = ttk.Progressbar(orient=HORIZONTAL, length=200, mode='determinate')
+#         progressbar.grid(row = 1, column = 2, rowspan = 35, pady = 5, padx = 10)
+#         progressbar.start()
     
     def configJson(self):
         ''' 
         Creates a sub-window to configure a .json file
         '''
         config = configJson.configJson(None, self.cc)
-        config.title("Configure your .json file")
-        if (config.didRun()):
-            self.cc = config.getConfig()
-            self.f = config.getPath()
-            self.write("Your .json file has been configured. The current values are:\n")
+        config.top.title("Configure your .json file")
+        self.wait_window(config.top)
+        self.write("Your .json file has been configured. The current values are:\n")
+        self.write(config.path.name)
+        self.write("\n")
+        with open(config.path.name) as f:
+            json_data = f.read()
+            self.cc = json.loads(json_data)
+            self.write("Fields in .json file\n")
             self.write(self.cc)
+            self.write("\n")
+            self.write("\n")
+        self.configRan = True
+        self.checkState()
         self.write("Finishing up\n")
         self.configRan = True
         self.checkState()
@@ -145,7 +158,7 @@ class airModel(Tkinter.Tk):
         ''' 
         Runs the firn air model -- only when a .json file, a data directory and a results directory has been loaded
         '''
-        firnAir = firnAirModel.firnAirModel(self.cc, self.dataDir, self.resultDir)
+        firnAir = firnAirModel.firnAirModel(self.cc, self.dataDir, self.resultDir, self.text)
     
     def saveData(self):
         print "saving data"

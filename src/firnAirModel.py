@@ -27,7 +27,7 @@ import time
 import airModel
 
 class firnAirModel:
-    def __init__(self, cc, dataDir, dataSave): 
+    def __init__(self, cc, dataDir, dataSave, text): 
         # load globals
         self.g        = 9.81                # m/s^2
         self.rho_i    = 917.0               # kg/m^3
@@ -41,6 +41,7 @@ class firnAirModel:
         self.cc       = cc                  # .json file
         self.dataDir  = dataDir             # data directory 
         self.dataSave = dataSave            # results directory
+        self.text     = text
         
         reload(MPG)
         reload(MPS)
@@ -68,7 +69,8 @@ class firnAirModel:
         elapsed_min = elapsed / 60.
         mins = np.floor(elapsed_min)
         secs = (elapsed_min-mins) * 60
-        print mins, 'min', secs, 'sec elapsed'
+        string = mins, 'min', secs, 'sec elapsed'
+        self.write(string)
     
     
     def w(self, por, zz, Accu, rho_interface, T, p_a):
@@ -167,7 +169,7 @@ class firnAirModel:
         Routine to solve Ax = B
 
         Arguments:
-        a
+        a -- 
         b -- 
 
         Returns:
@@ -327,7 +329,8 @@ class firnAirModel:
             f_LID     = np.loadtxt(os.path.join(self.dataDir,'LID.csv'), delimiter = ',', skiprows = 0)
             f_gas     = np.loadtxt(os.path.join(self.dataDir,'GasHistory.csv'), delimiter = ',', skiprows = 0)
             
-            print "Gasses Loaded"
+        
+            self.write("Gasses loaded")
             
             Accu_vec = f_clim[:,1]
             T_vec    = f_clim[:,2]
@@ -787,13 +790,13 @@ class firnAirModel:
         Returns:
         d --
         '''
-        gaschoice_all = self.cc['gaschoice']
-        gaschoice     = self.cc['gaschoice']
+        gaschoice_all = ["d15N2","CO2"]
+        #gaschoice     = self.cc['gaschoice']
         nogas = len(gaschoice_all) #FIX -- right now, it's the length of the string
         d = {}
         for jj in xrange(nogas):
-            # print jj         
-            # gaschoice = gaschoice_all[jj]
+            print jj         
+            gaschoice = gaschoice_all[jj]
             print jj, gaschoice      
             runtype = self.cc["runtype"]         
             if runtype == 'transient':
@@ -810,5 +813,8 @@ class firnAirModel:
             d['nodes'] = z_nodes           
         return d
     
+    def write(self, txt): 
+            self.text.insert(Tkinter.END, str(txt))
+
 #if __name__ == "__main__":
     #firnAir = firnAirModel(sys.argv[1:], sys.argv[2:], sys.argv[3:]) #need to be changed (sys.argv[1:])

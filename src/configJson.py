@@ -10,49 +10,50 @@ import json
 
 class configJson(Tkinter.Tk):  
     def __init__(self, parent, cc):
-        Tkinter.Tk.__init__(self, parent)
-        self.grid()
-        self.parent = parent
+        #Tkinter.Tk.__init__(self, parent)
+        self.top = Toplevel(parent)
+        self.top.grid()
+        #self.parent = parent
         self.ee = cc
         self.dd = {}
         self.errorBox = None
         self.configJsonFile()
             
     def configJsonFile(self):     
-        self.depthEntry      = Entry(self)
-        self.adChoiceEntry   = Entry(self)
-        self.siteChoiceEntry = Entry(self)
-        self.z_resEntry      = Entry(self)
-        self.stepsEntry      = Entry(self)
-        self.userDataEntry   = Entry(self)
-        self.gravityEntry    = Entry(self)
-        self.thermalEntry    = Entry(self)
-        self.pressureEntry   = Entry(self)
-        self.conzoneEntry    = Entry(self)
-        self.rho0Entry       = Entry(self)
-        self.tGradEntry      = Entry(self)
-        self.diffuEntry      = Entry(self)
-        self.gasChoiceEntry  = Entry(self)
-        self.runTypeEntry    = Entry(self)
+        self.depthEntry      = Entry(self.top)
+        self.adChoiceEntry   = Entry(self.top)
+        self.siteChoiceEntry = Entry(self.top)
+        self.z_resEntry      = Entry(self.top)
+        self.stepsEntry      = Entry(self.top)
+        self.userDataEntry   = Entry(self.top)
+        self.gravityEntry    = Entry(self.top)
+        self.thermalEntry    = Entry(self.top)
+        self.pressureEntry   = Entry(self.top)
+        self.conzoneEntry    = Entry(self.top)
+        self.rho0Entry       = Entry(self.top)
+        self.tGradEntry      = Entry(self.top)
+        self.diffuEntry      = Entry(self.top)
+        self.gasChoiceEntry  = Entry(self.top)
+        self.runTypeEntry    = Entry(self.top)
           
-        self.errorBox = Text(self, height = 30, width = 40)
-        self.generateJson = Tkinter.Button(self, text = "Generate config file", height = 1, width = 20, command = self.generate)
+        self.errorBox = Text(self.top, height = 30, width = 40)
+        self.generateJson = Tkinter.Button(self.top, text = "Generate config file", height = 1, width = 20, command = self.generate)
         
-        Label(self, text="Depth:").grid(row = 0, sticky = W)
-        Label(self, text="Advection method: ").grid(row = 1, sticky = W)
-        Label(self, text="Sitechoice: ").grid(row = 2, sticky = W)
-        Label(self, text="Z-resolution: ").grid(row = 3, sticky = W)
-        Label(self, text="Stepsize: ").grid(row = 4, sticky = W)
-        Label(self, text="User's data: ").grid(row = 5, sticky = W)
-        Label(self, text="Gravity: ").grid(row = 6, sticky = W)
-        Label(self, text="Thermal: ").grid(row = 7, sticky = W)
-        Label(self, text="Pressure: ").grid(row = 8, sticky = W)
-        Label(self, text="ConZone depth: ").grid(row = 9, sticky = W)
-        Label(self, text="Rho0: ").grid(row = 10, sticky = W)
-        Label(self, text="T-grad: ").grid(row = 11, sticky = W)
-        Label(self, text="Diffusion: ").grid(row = 12, sticky = W)
-        Label(self, text="Gas choice: ").grid(row = 13, sticky = W)
-        Label(self, text="Run type: ").grid(row = 14, sticky = W)
+        Label(self.top, text = "Depth:").grid(row = 0, sticky = W)
+        Label(self.top, text = "Advection method: ").grid(row = 1, sticky = W)
+        Label(self.top, text = "Sitechoice: ").grid(row = 2, sticky = W)
+        Label(self.top, text = "Z-resolution: ").grid(row = 3, sticky = W)
+        Label(self.top, text = "Stepsize: ").grid(row = 4, sticky = W)
+        Label(self.top, text = "User's data: ").grid(row = 5, sticky = W)
+        Label(self.top, text = "Gravity: ").grid(row = 6, sticky = W)
+        Label(self.top, text = "Thermal: ").grid(row = 7, sticky = W)
+        Label(self.top, text = "Pressure: ").grid(row = 8, sticky = W)
+        Label(self.top, text = "ConZone depth: ").grid(row = 9, sticky = W)
+        Label(self.top, text = "Rho0: ").grid(row = 10, sticky = W)
+        Label(self.top, text = "T-grad: ").grid(row = 11, sticky = W)
+        Label(self.top, text = "Diffusion: ").grid(row = 12, sticky = W)
+        Label(self.top, text = "Gas choice: ").grid(row = 13, sticky = W)
+        Label(self.top, text = "Run type: ").grid(row = 14, sticky = W)
     
         self.depthEntry.grid(row = 0, column = 1)
         self.adChoiceEntry.grid(row = 1, column = 1)
@@ -128,7 +129,7 @@ class configJson(Tkinter.Tk):
         self.setConfig()(self.dd, variablef)
             
         self.save(self.dd)
-        self.destroy()
+        self.cleanup()
     
     def setConfig(self):
         def field(dd, dic):
@@ -151,17 +152,8 @@ class configJson(Tkinter.Tk):
     
     def str2bool(self, v):
         return v.lower() in ("yes", "true", "t", "1")
-  
-    def getConfig(self):
-        return self.dd
     
-    def getPath(self):
-        return self.f
-    
-    def didRun(self):
-        return self.ran
-    
-    def quit(self):
-        global root
-        root.quit()
+    def cleanup(self):
+        self.path = self.f
+        self.top.destroy()
     
